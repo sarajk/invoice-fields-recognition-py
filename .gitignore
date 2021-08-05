@@ -1,2 +1,4 @@
 __pycache__
 input/mcv_configuration.json
+*.jpg
+!input/IMG_20210720_141331-copy-blurred.jpg
