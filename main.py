@@ -14,14 +14,15 @@ training_data_file = 'input/normalized-with-wrong.csv'
 image_file_path = 'input/IMG_20210720_141331-copy-blurred.jpg'
 
 #region: Files Definition
-image_file_name, image_file_extension = os.path.splitext(image_file_path)
-image_features_output_dir = 'output/' + image_file_name
+image_file_name, image_file_extension = os.path.splitext(os.path.basename(image_file_path))
+image_features_output_dir = 'output/analysis/' + image_file_name
 image_features_output_file = image_features_output_dir + '/output.csv'
 image_features_output_normalized_file = image_features_output_dir + '/output-normalized.csv'
 image_output_file_path = image_features_output_dir + '/'+ os.path.basename(image_file_path)
 
-# Create a directory with the image name
-os.mkdir(image_features_output_dir)
+if not os.path.exists(image_features_output_dir):
+    # Create a directory with the image name
+    os.makedirs(image_features_output_dir)
 
 #endregion
 

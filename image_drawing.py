@@ -11,6 +11,6 @@ def draw(analyze_results, image_file_path, output_file_path):
         for line in page_result.lines:
             boundaries = line.bounding_box
             bounding_box = BoundingBox(boundaries)
-
-            draw.rectangle((bounding_box.x, bounding_box.y, bounding_box.width, bounding_box.height), outline=color, width=2)
+            # It takes X0, Y0 (the starting point) and X1, Y1 (the ending point). Which in my opinion is weird.
+            draw.rectangle((bounding_box.x,bounding_box.y,bounding_box.x + bounding_box.width, bounding_box.y + bounding_box.height), outline=color, width=2)
     image.save(output_file_path)
