@@ -66,6 +66,9 @@ class SOM:
         self.som.train(self.data)
         self.som.cluster()
 
+        # NOTE: Uncomment this line to view the umatrix
+        # self.som.view_umatrix(bestmatches=True, bestmatchcolors=self.colors, labels=self.labels)
+
 
     def _get_bmu(self, test_data):
 
