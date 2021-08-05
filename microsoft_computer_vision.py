@@ -8,6 +8,9 @@ import os
 from PIL import Image
 import sys
 import time
+import json
+
+mcv_configuration_path = 'input/mcv_configuration.json'
 
 '''
 Authenticate
@@ -16,7 +19,21 @@ Authenticates your credentials and creates a client.
 subscription_key = ""
 endpoint = ""
 
+if not os.path.exists(mcv_configuration_path):
+    raise RuntimeError(mcv_configuration_path + ' file is missing!')
+else:
+    with open(mcv_configuration_path) as f:
+        config = json.load(f)
+        subscription_key = config['subscriptionKey']
+        endpoint = config['endpoint']
+
+if len(subscription_key.strip()) == 0 or len(endpoint.strip()) == 0:
+    raise RuntimeError('Microsoft Computer Vision Subscription key or Endpoint is missing, make sure that you have an mcv_configuration.json created!')
+
+
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
+
+print('Initialized Microsoft Computer Vision.')
 
 '''
 OCR: Read File using the Read API, extract text - local
