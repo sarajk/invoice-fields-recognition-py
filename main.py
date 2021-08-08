@@ -62,10 +62,13 @@ features_extractor = FeaturesExtractor()
 features_extractor.load_configuration(features_configuration_file_path)
 key_features = features_extractor.extract_key_features(analyze_results)
 value_features = features_extractor.extract_value_features(analyze_results, key_features, True)
+
+datasaver.write_csv(value_features, image_features_output_file)
+
 print('Features extracted and generated {} combinations'.format(len(value_features)))
 normalized_features = features_normalizer.normalize(value_features)
 
-datasaver.write_csv(value_features, image_features_output_file)
+
 datasaver.write_csv(normalized_features, image_features_output_normalized_file)
 #endregion
 
